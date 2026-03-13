@@ -2,7 +2,7 @@
 
 $mensagem = "";
 
-if ($SERVER["RESQUEST_METHOD"]== "POST"){
+if ($_SERVER["REQUEST_METHOD"]== "POST"){
     $usuario = strtoupper(trim($_POST["usuario"]));
     $senha = trim($_POST["senha"]);
 
@@ -10,8 +10,12 @@ if ($SERVER["RESQUEST_METHOD"]== "POST"){
         $mensagem = "Inválido: O nome de usuário e a senha são obrigatórios.";
     }
 
-    elseif(strlen($usuario) < 4 || strlen($senha) > 15){
-        $mensagem = "Inválido: A senha e o usuário deve ter entre 4 a 15 caracteres.";
+    elseif(strlen($usuario) < 4 || strlen($usuario) > 15){
+        $mensagem = "Inválido: O usuário deve ter entre 4 a 15 caracteres.";
+    }
+
+    elseif(strlen($senha) < 4 || strlen($senha) > 15){
+        $mensagem = "Inválido: A senha deve ter entre 4 a 15 caracteres.";
     }
 
     elseif(
@@ -21,7 +25,7 @@ if ($SERVER["RESQUEST_METHOD"]== "POST"){
 
         else{
             $data = date("d/m/Y H:i");
-            $mensagem = "Bem-vindo, $usuario! Você realizou o acesso no dia : $data .";
+            $mensagem = "Bem-vindo, $usuario! Você realizou o acesso no dia $data .";
         }
 }
 ?>
@@ -39,7 +43,7 @@ if ($SERVER["RESQUEST_METHOD"]== "POST"){
 
 <form method="Post">
     Usuário : <input type="text" name="usuario"><br><br>
-    Senha : <input type="passaword" name="senha"><br><br>
+    Senha : <input type="password" name="senha"><br><br>
     <button type="submit">Entrar</button>
 </form>
 
