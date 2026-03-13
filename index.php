@@ -27,5 +27,23 @@ $mensagem = "";
 if ($SERVER["RESQUEST_METHOD"]== "POST"){
     $usuario = strtoupper(trim($_POST["usuario"]));
     $senha = trim($_POST["senha"]);
+
+    if (empty($usuario) || empty($senha)){
+        $mensagem = "Inválido: O nome de usuário e a senha são obrigatórios.";
+    }
+
+    elseif(strlen($usuario) < 4 || strlen($senha) > 15){
+        $mensagem = "Inválido: A senha e o usuário deve ter entre 4 a 15 caracteres.";
+    }
+
+    elseif(
+        ($usuario != "PROFESSOR && $usuario != COORDENADOR") || $senha != "DEVISATE"){
+            $mensagem = "Inválido: Usuário ou senha inválidos.";
+        }
+
+        else{
+            $data = date("d;m;Y H:i");
+            $mensagem = "Bem-vindo,$usuario! Você realizou o acesso no dia $date .";
+        }
 }
 ?>
