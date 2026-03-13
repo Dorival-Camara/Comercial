@@ -22,4 +22,10 @@
 </html>
 <?php
 
+$mensagem = "";
+
+if ($SERVER["RESQUEST_METHOD"]== "POST"){
+    $usuario = strtoupper(trim($_POST["usuario"]));
+    $senha = trim($_POST["senha"]);
+}
 ?>
