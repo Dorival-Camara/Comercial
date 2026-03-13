@@ -21,7 +21,7 @@ if ($SERVER["RESQUEST_METHOD"]== "POST"){
 
         else{
             $data = date("d/m/Y H:i");
-            $mensagem = "Bem-vindo, $usuario! Você realizou o acesso no dia $data .";
+            $mensagem = "Bem-vindo, $usuario! Você realizou o acesso no dia : $data .";
         }
 }
 ?>
