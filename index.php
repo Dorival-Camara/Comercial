@@ -1,6 +1,7 @@
 <?php
 
 $mensagem = "";
+$mostrarBotao = 0;
 
 if ($_SERVER["REQUEST_METHOD"]== "POST"){
     $usuario = strtoupper(trim($_POST["usuario"]));
@@ -20,16 +21,17 @@ if ($_SERVER["REQUEST_METHOD"]== "POST"){
 
     elseif(($usuario == "PROFESSOR" || $usuario == "COORDENADOR") && $senha != "DEVISATE"){
             $mensagem = "Inválido: A sua senha está incorreta.";
-        }
+    }
 
     elseif(($usuario != "PROFESSOR" && $usuario != "COORDENADOR") && $senha == "DEVISATE"){
             $mensagem = "Inválido: O seu usuário está incorreto.";
-        }
+    }
 
     else{
-            $data = date("d/m/Y H:i");
-            $mensagem = "Bem-vindo, $usuario! Você realizou o acesso no dia $data .";
-        }
+        $data = date("d/m/Y H:i");
+        $mensagem = "Bem-vindo, $usuario! Você realizou o acesso no dia $data .";
+        $mostrarBotao = 1;
+    }
 }
 ?>
 
@@ -51,7 +53,13 @@ if ($_SERVER["REQUEST_METHOD"]== "POST"){
 </form>
 
 <br>
-<strong><?php echo $mensagem; ?></strong>
+<strong><?php echo $mensagem; ?><br></strong>
+
+<?php if ($mostrarBotao == 1):?>
+    <button type="button"><a href="">Entrar</a></button>
+
+    <?php endif;?>
+    
     
 </body>
 </html>
