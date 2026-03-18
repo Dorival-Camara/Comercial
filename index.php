@@ -18,12 +18,15 @@ if ($_SERVER["REQUEST_METHOD"]== "POST"){
         $mensagem = "Inválido: A senha deve ter entre 4 a 15 caracteres.";
     }
 
-    elseif(
-        ($usuario != "PROFESSOR" && $usuario != "COORDENADOR") || $senha != "DEVISATE"){
-            $mensagem = "Inválido: Usuário ou senha inválidos.";
+    elseif(($usuario == "PROFESSOR" || $usuario == "COORDENADOR") && $senha != "DEVISATE"){
+            $mensagem = "Inválido: A sua senha está incorreta.";
         }
 
-        else{
+    elseif(($usuario != "PROFESSOR" && $usuario != "COORDENADOR") && $senha == "DEVISATE"){
+            $mensagem = "Inválido: O seu usuário está incorreto.";
+        }
+
+    else{
             $data = date("d/m/Y H:i");
             $mensagem = "Bem-vindo, $usuario! Você realizou o acesso no dia $data .";
         }
